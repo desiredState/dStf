@@ -72,6 +72,10 @@ variable "aws_region" {
 }
 ```
 
+#### Example repo
+
+As an example, [here's a repo](https://github.com/desiredState/terraform-rancher) which uses dStf.
+
 ## Usage
 
 The `dstf` command must be executed from the root of your Terraform repo. Usage and available commands can be seen like so:
