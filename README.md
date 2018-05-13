@@ -25,7 +25,7 @@ dStf expects your Terraform repo to be formatted like so:
 ```
 
 #### .gitignore
-It is IMPORTANT to ensure you have the following entries in your repo's `.gitignore` file. Missing these could lead to secrets being pushed to the remote.
+It is **important** to ensure you have the following entries in your repo's `.gitignore` file. Missing these could lead to secrets being pushed to the remote.
 
 ```sh
 # Sensitive files.
