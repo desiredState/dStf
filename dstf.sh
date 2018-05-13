@@ -76,6 +76,7 @@ function dstf_init {
     
     if [ ! -d "terraform" ]; then
         dlog error "Failed to find a \"terraform/\" directory. See the README for instructions."
+        exit 1
     fi
 
     for ws in "${WORKSPACES[@]}"; do
