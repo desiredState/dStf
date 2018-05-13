@@ -6,7 +6,7 @@ An opinionated Terraform wrapper by desiredState.
 
 To install the `dstf` command-line tool simply paste the following command into a shell. If you get a `Permission denied` error, try `sudo -i` first.
 
-```bash
+```sh
 curl -L https://raw.githubusercontent.com/desiredState/dStf/master/wrapper.sh > /usr/local/bin/dstf && chmod +x /usr/local/bin/dstf
 ```
 
@@ -16,12 +16,12 @@ dStf expects your Terraform repo to be formatted like so:
 
 ```sh
 .
-├── .gitignore               # Ensures you don't push secrets, etc, to the remote. See below for content.
-├── dev-secrets.tfvars       # dev workspace specific variables. See below for content.
-├── prod-secrets.tfvars      # prod workspace specific variables. See below for content.
-└── terraform                # This directory contains all your Terraform configurations.
-    ├── variables-common.tf  # This initialises the above tfvars. See below for content.
-    └── main.tf              # A placeholder for your own Terraform configuration.
+├── .gitignore           # Ensures you don't push secrets to the remote. See below for content.
+├── dev-secrets.tfvars   # dev workspace specific variables. See below for content.
+├── prod-secrets.tfvars  # prod workspace specific variables. See below for content.
+└── terraform            # This directory contains all your Terraform configurations.
+    ├── dstf.tf          # This initialises the above tfvars. See below for content.
+    └── main.tf          # A placeholder for your own Terraform configuration.
 ```
 
 #### .gitignore
@@ -55,8 +55,21 @@ To keep any secrets out of source control you'll need create a `dev-secrets.tfva
 
 ```yaml
 # KEEP THIS FILE SECRET!
+
 aws_access_key = "CHANGE_ME"
 aws_secret_key = "CHANGE_ME"
+```
+
+#### terraform/dstf.tf
+
+```sh
+variable "aws_access_key" {}
+
+variable "aws_secret_key" {}
+
+variable "aws_region" {
+  default = "eu-west-2"
+}
 ```
 
 ## Usage
