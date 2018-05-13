@@ -61,9 +61,7 @@ aws_secret_key = "CHANGE_ME"
 
 ## Usage
 
-The `dstf` command must be executed from the root of your Terraform repo.
-
-Usage and available commands can be seen like so:
+The `dstf` command must be executed from the root of your Terraform repo. Usage and available commands can be seen like so:
 
 ```sh
 dstf help
