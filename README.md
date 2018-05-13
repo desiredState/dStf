@@ -14,11 +14,31 @@ If you get a `Permission denied` error, try `sudo -i` then the above command aga
 
 ## Prerequisites
 
-* Install Docker on your local machine.
+* Create a Terraform repo containing a `terraform` directory.
+
+* IMPORTANT! Ensure you have the following entries in your Terraform repo's `.gitignore` file.
+
+```
+# Sensitive files.
+secrets.tfvars
+*-secrets.tfvars
+
+# Terraform compiled files.
+*.tfstate
+*.tfstate.backup
+*.tfplan
+terraform.tfstate.d/
+
+# Terraform modules directory.
+.terraform/
+
+# dStf files.
+.dstf-init.done
+```
 
 * Create a `Programmatic access` IAM user and access keys with `AdministratorAccess` role permissions for Terraform in AWS.
 
-* To keep any secrets out of source control you'll need create a `dev-secrets.tfvars` and a `prod-secrets.tfvars` file in the root directory of this repository with the following content (adjusting as necessary for the given account). These are already added to the `.gitignore` file, however, you must still take care to KEEP THEM SECRET.
+* To keep any secrets out of source control you'll need create a `dev-secrets.tfvars` and a `prod-secrets.tfvars` file in the root directory of your Terraform repo with the following content (adjusting as necessary for the given account).
 
 ```yaml
 # KEEP THIS FILE SECRET!
