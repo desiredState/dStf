@@ -74,6 +74,10 @@ function check_deps {
 function dstf_init {
     dlog info "It looks like you've never run dStf here before, let's set you up..."
     
+    if [ ! -d "terraform" ]; then
+        dlog error "Failed to find a \"terraform/\" directory. See the README for instructions."
+    fi
+
     for ws in "${WORKSPACES[@]}"; do
         dlog info "Creating the ${ws} workspace..."
         $DOCKER_TERRAFORM workspace new $ws terraform/
