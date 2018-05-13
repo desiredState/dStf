@@ -24,7 +24,7 @@ dStf expects your Terraform repo to be formatted like so:
     └── main.tf          # A placeholder for your own Terraform configuration.
 ```
 
-### .gitignore
+##### .gitignore
 It is **important** to ensure you have the following entries in your repo's `.gitignore` file. Missing these could lead to secrets being pushed to the remote.
 
 ```sh
@@ -45,11 +45,11 @@ terraform.tfstate.d/
 .dstf-init.done
 ```
 
-### AWS credentials
+##### AWS credentials
 
 Create a `Programmatic access` IAM user and access keys with `AdministratorAccess` role permissions for Terraform in AWS.
 
-### {dev,prod}-secrets.tfvars
+##### {dev,prod}-secrets.tfvars
 
 To keep any secrets out of source control you'll need create a `dev-secrets.tfvars` and a `prod-secrets.tfvars` file in the root directory of your Terraform repo with the following content (adjusting as necessary for the given account).
 
@@ -60,7 +60,7 @@ aws_access_key = "CHANGE_ME"
 aws_secret_key = "CHANGE_ME"
 ```
 
-### terraform/dstf.tf
+##### terraform/dstf.tf
 
 ```sh
 variable "aws_access_key" {}
