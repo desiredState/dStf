@@ -7,7 +7,7 @@ An opinionated Terraform wrapper by desiredState.
 Simply paste the following command into a shell:
 
 ```bash
-curl -L https://raw.githubusercontent.com/desiredstate/dstf/master/wrapper.sh > /usr/local/bin/dstf && chmod +x /usr/local/bin/dstf && dstf
+curl -L https://raw.githubusercontent.com/desiredState/dStf/master/wrapper.sh > /usr/local/bin/dstf && chmod +x /usr/local/bin/dstf && dstf
 ```
 
 If you get a `Permission denied` error, try `sudo -i` then the above command again.
