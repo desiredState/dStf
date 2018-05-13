@@ -104,8 +104,6 @@ function dstf_init {
 
 # Runs every time dStf is executed.
 function dstf_call {
-    tf_format
-    
     if [ ! -f "${1}-secrets.tfvars" ]; then
         dlog error "Failed to find your ${1}-secrets.tfvars file. See the README for instructions."
         exit 1
@@ -121,6 +119,8 @@ function dstf_call {
     dlog success "Configured Terraform with:"
     dlog success "  - Workspace: ${1}"
     dlog success "  - Variables: ${1}-secrets.tfvars"
+
+    tf_format
 }
 
 # Ensure a valid workspace name argument was provided.
