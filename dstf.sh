@@ -1,6 +1,7 @@
 #!/usr/bin/env bash
 
-DOCKER_TERRAFORM="docker run -it -v ${PWD}:/data --workdir=/data hashicorp/terraform:light"
+# DOCKER_TERRAFORM="docker run -it -v ${PWD}:/data --workdir=/data hashicorp/terraform:light"
+DOCKER_TERRAFORM="terraform"
 PLAN_FILE="dstf.tfplan"
 LOCK_FILE=".dstf-init.done"
 WORKSPACES=( dev prod )
@@ -59,7 +60,7 @@ function dlog {
 
 # Check dStf dependencies are satisfied.
 function check_deps {
-    DEPS=( 'docker' )
+    DEPS=( 'tput' 'terraform' )
     
     for i in "${DEPS[@]}"; do
         if ! hash "${i}" 2>/dev/null; then
