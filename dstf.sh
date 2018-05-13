@@ -78,7 +78,7 @@ function dstf_init {
         dlog error "Failed to find a \"${TERRAFORM_DATA}\" directory. See the README for instructions."
         exit 1
     fi
-
+    
     for ws in "${WORKSPACES[@]}"; do
         dlog info "Creating the ${ws} workspace..."
         $TERRAFORM_BIN workspace new $ws $TERRAFORM_DATA
@@ -119,7 +119,7 @@ function dstf_call {
     dlog success "Configured Terraform with:"
     dlog success "  - Workspace: ${1}"
     dlog success "  - Variables: ${1}-secrets.tfvars"
-
+    
     tf_format
 }
 
