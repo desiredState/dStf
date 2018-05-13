@@ -4,21 +4,30 @@ An opinionated Terraform wrapper by desiredState.
 
 ## Installation
 
-Simply paste the following command into a shell:
+To install the `dstf` command-line tool simply paste the following command into a shell. If you get a `Permission denied` error, try `sudo -i` first.
 
 ```bash
 curl -L https://raw.githubusercontent.com/desiredState/dStf/master/wrapper.sh > /usr/local/bin/dstf && chmod +x /usr/local/bin/dstf
 ```
 
-If you get a `Permission denied` error, try `sudo -i` then the above command again.
-
 ## Prerequisites
 
-* Create a Terraform repo containing a `terraform` directory.
+dStf expects your Terraform repo to be formatted like so:
 
-* IMPORTANT! Ensure you have the following entries in your Terraform repo's `.gitignore` file.
-
+```sh
+.
+├── .gitignore               # Ensures you don't push secrets, etc, to the remote. See below for content.
+├── dev-secrets.tfvars       # dev workspace specific variables. See below for content.
+├── prod-secrets.tfvars      # prod workspace specific variables. See below for content.
+└── terraform                # This directory contains all your Terraform configurations.
+    ├── variables-common.tf  # This initialises the above tfvars. See below for content.
+    └── main.tf              # A placeholder for your own Terraform configuration.
 ```
+
+#### .gitignore
+It is IMPORTANT to ensure you have the following entries in your repo's `.gitignore` file. Missing these could lead to secrets being pushed to the remote.
+
+```sh
 # Sensitive files.
 secrets.tfvars
 *-secrets.tfvars
@@ -36,20 +45,25 @@ terraform.tfstate.d/
 .dstf-init.done
 ```
 
-* Create a `Programmatic access` IAM user and access keys with `AdministratorAccess` role permissions for Terraform in AWS.
+#### AWS credentials
 
-* To keep any secrets out of source control you'll need create a `dev-secrets.tfvars` and a `prod-secrets.tfvars` file in the root directory of your Terraform repo with the following content (adjusting as necessary for the given account).
+Create a `Programmatic access` IAM user and access keys with `AdministratorAccess` role permissions for Terraform in AWS.
+
+#### {dev,prod}-secrets.tfvars
+
+To keep any secrets out of source control you'll need create a `dev-secrets.tfvars` and a `prod-secrets.tfvars` file in the root directory of your Terraform repo with the following content (adjusting as necessary for the given account).
 
 ```yaml
 # KEEP THIS FILE SECRET!
-
 aws_access_key = "CHANGE_ME"
 aws_secret_key = "CHANGE_ME"
 ```
 
 ## Usage
 
-Usage can be seen like so:
+The `dstf` command must be executed from the root of your Terraform repo.
+
+Usage and available commands can be seen like so:
 
 ```sh
 dstf help
