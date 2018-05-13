@@ -1,10 +1,10 @@
 #!/usr/bin/env bash
 
-# DOCKER_TERRAFORM="docker run -it -v ${PWD}:/data --workdir=/data hashicorp/terraform:light"
-DOCKER_TERRAFORM="terraform"
+TERRAFORM_BIN="terraform"
+TERRAFORM_DATA="terraform/"
 PLAN_FILE="dstf.tfplan"
 LOCK_FILE=".dstf-init.done"
-WORKSPACES=( dev prod )
+WORKSPACES=( 'dev' 'prod' )
 
 # Internal dStf functions.
 
@@ -75,20 +75,20 @@ function dstf_init {
     dlog info "It looks like you've never run dStf here before, let's set you up..."
     
     if [ ! -d "terraform" ]; then
-        dlog error "Failed to find a \"terraform/\" directory. See the README for instructions."
+        dlog error "Failed to find a \"${TERRAFORM_DATA}\" directory. See the README for instructions."
         exit 1
     fi
 
     for ws in "${WORKSPACES[@]}"; do
         dlog info "Creating the ${ws} workspace..."
-        $DOCKER_TERRAFORM workspace new $ws terraform/
+        $TERRAFORM_BIN workspace new $ws $TERRAFORM_DATA
         if [[ $? -ne 0 ]]; then
             dlog error "Failed to create the ${ws} workspace."
             exit 1
         fi
         
         dlog info "Initialising the ${ws} workspace..."
-        $DOCKER_TERRAFORM init terraform/
+        $TERRAFORM_BIN init $TERRAFORM_DATA
         if [[ $? -ne 0 ]]; then
             dlog error "Failed to initialise the ${ws} workspace."
             exit 1
@@ -110,7 +110,7 @@ function dstf_call {
     fi
     
     dlog info "Updating Terraform modules..."
-    $DOCKER_TERRAFORM get terraform/
+    $TERRAFORM_BIN get $TERRAFORM_DATA
     if [[ $? -ne 0 ]]; then
         dlog error "Failed to update Terraform modules."
         exit 1
@@ -143,7 +143,7 @@ function select_workspace {
     verify_workspace $1
     
     dlog info "Selecting the ${1} workspace..."
-    $DOCKER_TERRAFORM workspace select $1
+    $TERRAFORM_BIN workspace select $1
     if [[ $? -ne 0 ]]; then
         dlog error "Failed to select the ${1} workspace."
         exit 1
@@ -156,20 +156,20 @@ function select_workspace {
 function tf_format {
     dlog info "Ensuring configuration is properly formatted..."
     
-    $DOCKER_TERRAFORM fmt \
+    $TERRAFORM_BIN fmt \
     -diff=true \
     -write=true \
-    terraform/
+    $TERRAFORM_DATA
 }
 
 # Run an oppinionated Terraform Plan against the given workspace.
 function tf_plan {
     dlog info "Running PLAN against the ${1} workspace..."
     
-    $DOCKER_TERRAFORM plan \
+    $TERRAFORM_BIN plan \
     -out="${PLAN_FILE}" \
     -var-file="${1}-secrets.tfvars" \
-    terraform/
+    $TERRAFORM_DATA
     
     dlog success "Plan compiled. Run \"dstf apply ${1}\" to apply it."
 }
@@ -183,7 +183,7 @@ function tf_apply {
     
     dlog info "Running APPLY against the ${1} workspace..."
     
-    $DOCKER_TERRAFORM apply \
+    $TERRAFORM_BIN apply \
     "${PLAN_FILE}"
 }
 
@@ -191,18 +191,18 @@ function tf_apply {
 function tf_destroy {
     dlog info "Running DESTROY against the ${1} workspace..."
     
-    $DOCKER_TERRAFORM destroy \
+    $TERRAFORM_BIN destroy \
     -var-file="${1}-secrets.tfvars" \
-    terraform/
+    $TERRAFORM_DATA
 }
 
 # Reverse everything the dstf_init function did.
 function tf_wipe {
-    $DOCKER_TERRAFORM workspace select default
+    $TERRAFORM_BIN workspace select default
     
     for ws in "${WORKSPACES[@]}"; do
         dlog info "Removing the ${ws} workspace..."
-        $DOCKER_TERRAFORM workspace delete -force $ws
+        $TERRAFORM_BIN workspace delete -force $ws
     done
     
     if [ -f $PLAN_FILE ]; then
