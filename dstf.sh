@@ -166,13 +166,13 @@ function tf_plan {
     -var-file="${1}-secrets.tfvars" \
     terraform/
     
-    dlog success "Plan compiled. Run \"${0} apply ${1}\" to apply it."
+    dlog success "Plan compiled. Run \"dstf apply ${1}\" to apply it."
 }
 
 # Run an oppinionated Terraform Apply against the given workspace.
 function tf_apply {
     if [ ! -f "${PLAN_FILE}" ]; then
-        dlog error "Failed to find the plan file. Please run \"${0} plan ${1}\" first."
+        dlog error "Failed to find the plan file. Please run \"dstf plan ${1}\" first."
         exit 1
     fi
     
