@@ -1,3 +1,5 @@
+#!/bin/bash
+
 NAMESPACE=${DSTF_NAMESPACE:='desiredstate'}
 IMAGE=${DSTF_IMAGE:='dstf'}
 TAG=${DSTF_VERSION:='latest'}
