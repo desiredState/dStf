@@ -1,4 +1,4 @@
-#!/bin/bash
+#!/usr/bin/env bash
 
 NAMESPACE=${DSTF_NAMESPACE:='desiredstate'}
 IMAGE=${DSTF_IMAGE:='dstf'}
