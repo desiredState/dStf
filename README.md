@@ -78,7 +78,7 @@ variable "aws_region" {
 
 #### Example repo
 
-As an example, [here's a repo](https://github.com/desiredState/terraform-rancher) which uses dStf.
+A dStf-compatible example repo can be found in the `example/` directory.
 
 ## Usage
 
