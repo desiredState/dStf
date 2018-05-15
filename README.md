@@ -64,6 +64,8 @@ aws_secret_key = "CHANGE_ME"
 
 #### terraform/dstf.tf
 
+This file simply initialises the variables found in the above `{dev,prod}-secrets.tfvars` files so they're available in your own Terraform configurations.
+
 ```sh
 variable "aws_access_key" {}
 
