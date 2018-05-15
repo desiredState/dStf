@@ -24,7 +24,7 @@ dStf expects your Terraform repo to be formatted like so:
     └── main.tf          # A placeholder for your own Terraform configuration.
 ```
 
-You can then proceed to bulk out the `terraform/` directory with your own Terraform configurations, modules, etc.
+You can then proceed to bulk out the `terraform/` directory with your own Terraform configurations, modules, etc, as per the [official documentation](https://www.terraform.io/intro/getting-started/build.html).
 
 #### .gitignore
 It is **important** to ensure you have the following entries in your repo's `.gitignore` file. Missing these could lead to secrets being pushed to the remote.
