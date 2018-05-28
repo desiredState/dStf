@@ -12,10 +12,6 @@ To install the `dstf` command-line tool simply paste the following command into 
 curl -L https://raw.githubusercontent.com/desiredState/dStf/master/wrapper.sh > /usr/local/bin/dstf && chmod +x /usr/local/bin/dstf
 ```
 
-#### Windows
-
-dStf will also work in Windows 10 and later if you've enabled the Windows Subsystem for Linux feature. The official guide can be [found here](https://docs.microsoft.com/en-us/windows/wsl/install-win10). Once enabled, open PowerShell then type `bash` followed the same command as Linux/MacOS above.
-
 ## Prerequisites
 
 dStf expects your Terraform repo to be formatted like so:
