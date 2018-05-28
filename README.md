@@ -14,7 +14,7 @@ curl -L https://raw.githubusercontent.com/desiredState/dStf/master/wrapper.sh > 
 
 #### Windows
 
-Docs will be updated shortly.
+dStf will also work in Windows 10 and later if you've enabled the Windows Subsystem for Linux feature. The official guide can be [found here](https://docs.microsoft.com/en-us/windows/wsl/install-win10).
 
 ## Prerequisites
 
