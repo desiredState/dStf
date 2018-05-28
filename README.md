@@ -4,11 +4,17 @@ An opinionated Terraform wrapper by desiredState.
 
 ## Installation
 
+#### Linux / MacOS
+
 To install the `dstf` command-line tool simply paste the following command into a shell. If you get a `Permission denied` error, try `sudo -i` first.
 
 ```sh
 curl -L https://raw.githubusercontent.com/desiredState/dStf/master/wrapper.sh > /usr/local/bin/dstf && chmod +x /usr/local/bin/dstf
 ```
+
+#### Windows
+
+Docs will be updated shortly.
 
 ## Prerequisites
 
