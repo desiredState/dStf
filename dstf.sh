@@ -4,7 +4,7 @@ TERRAFORM_BIN="terraform"
 TERRAFORM_DATA="terraform/"
 PLAN_FILE="dstf.tfplan"
 LOCK_FILE=".dstf-init.done"
-WORKSPACES=( 'dev' 'prod' )
+WORKSPACES=( 'dev' 'test' 'prod' )
 
 # Internal dStf functions.
 
