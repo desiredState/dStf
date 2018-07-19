@@ -15,7 +15,7 @@ usage: dStf [-h] {plan,apply,destroy} $(printf "%s," "{${WORKSPACES[@]}}" | cut 
 An opinionated Terraform wrapper by desiredState.
 
 positional arguments:
-  {plan,apply,wipe}
+  {plan,apply,destroy}
     plan                generate an execution plan
     apply               apply the latest execution plan
     destroy             destroy dStf-managed infrastructure
