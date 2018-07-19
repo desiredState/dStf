@@ -20,6 +20,7 @@ dStf expects your Terraform repo to be formatted like so:
 .
 ├── .gitignore           # Ensures you don't push secrets to the remote. See below for content.
 ├── dev-secrets.tfvars   # dev workspace specific variables. See below for content.
+├── test-secrets.tfvars  # test workspace specific variables. See below for content.
 ├── prod-secrets.tfvars  # prod workspace specific variables. See below for content.
 └── terraform            # This directory contains all your Terraform configurations.
     ├── dstf.tf          # This initialises the above tfvars. See below for content.
@@ -53,9 +54,9 @@ terraform.tfstate.d/
 
 Create a `Programmatic access` IAM user and access keys with `AdministratorAccess` role permissions for Terraform in AWS.
 
-#### {dev,prod}-secrets.tfvars
+#### {dev,test,prod}-secrets.tfvars
 
-To keep any secrets out of source control you'll need create a `dev-secrets.tfvars` and a `prod-secrets.tfvars` file in the root directory of your Terraform repo with the following content (adjusting as necessary for the given account).
+To keep any secrets out of source control you'll need create a `dev-secrets.tfvars`, `test-secrets.tfvars` and a `prod-secrets.tfvars` file in the root directory of your Terraform repo with the following content (adjusting as necessary for the given account).
 
 ```yaml
 # KEEP THIS FILE SECRET!
@@ -66,7 +67,7 @@ aws_secret_key = "CHANGE_ME"
 
 #### terraform/dstf.tf
 
-This file simply initialises the variables found in the above `{dev,prod}-secrets.tfvars` files so they're available from your own Terraform configurations.
+This file simply initialises the variables found in the above `{dev,test,prod}-secrets.tfvars` files so they're available from your own Terraform configurations.
 
 ```sh
 variable "aws_access_key" {}
