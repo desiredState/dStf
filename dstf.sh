@@ -10,12 +10,13 @@ WORKSPACES=( 'dev' 'test' 'prod' )
 
 function print_usage {
     cat <<EOF
-usage: dStf [-h] {plan,apply,destroy} $(printf "%s," "{${WORKSPACES[@]}}" | cut -d "," -f 1-${#WORKSPACES[@]}) ...
+usage: dStf [-h] {new,plan,apply,destroy} $(printf "%s," "{${WORKSPACES[@]}}" | cut -d "," -f 1-${#WORKSPACES[@]}) ...
 
 An opinionated Terraform wrapper by desiredState.
 
 positional arguments:
-  {plan,apply,destroy}
+  {new,plan,apply,destroy}
+    new                 create a new dStf project
     plan                generate an execution plan
     apply               apply the latest execution plan
     destroy             destroy dStf-managed infrastructure
@@ -162,6 +163,11 @@ function tf_format {
     $TERRAFORM_DATA
 }
 
+# Create a new dStf project.
+function dstf_new {
+    echo 'todo'
+}
+
 # Run an oppinionated Terraform Plan against the given workspace.
 function tf_plan {
     dlog info "Running PLAN against the ${1} workspace..."
@@ -220,7 +226,7 @@ function tf_wipe {
 
 cat <<EOF
 
-                      $(tput setaf 7)$(tput bold)desired$(tput sgr 0)$(tput setaf 2)$(tput bold)State$(tput sgr 0)$(tput setaf 7)$(tput bold):$(tput sgr 0)
+$(tput setaf 7)$(tput bold)desired$(tput sgr 0)$(tput setaf 2)$(tput bold)State$(tput sgr 0)$(tput setaf 7)$(tput bold):$(tput sgr 0)
 
 EOF
 
@@ -239,6 +245,9 @@ select_workspace $2
 dstf_call $2
 
 case $1 in
+    new)
+        dstf_new
+    ;;
     plan)
         tf_plan $2
     ;;
