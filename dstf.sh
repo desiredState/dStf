@@ -221,7 +221,6 @@ function tf_wipe {
 cat <<EOF
 
                       $(tput setaf 7)$(tput bold)desired$(tput sgr 0)$(tput setaf 2)$(tput bold)State$(tput sgr 0)$(tput setaf 7)$(tput bold):$(tput sgr 0)
-                          $(tput setaf 7)the rancher people$(tput sgr 0)
 
 EOF
 
