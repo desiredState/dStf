@@ -100,3 +100,4 @@ dstf plan dev
 ## To do
 
 * **dStf Vault integration** to remove the dependancy on local `{dev,test,prod}-secrets.tfvars` files.
+* The `dstf new` command to generate a fresh dStf-compatible Terraform repo (like `example/`).
