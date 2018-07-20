@@ -99,4 +99,4 @@ dstf plan dev
 
 ## To do
 
-* *dStf Vault integration* to completely remove the need for local `{dev,test,prod}-secrets.tfvars` files.
+* **dStf Vault integration** to completely remove the need for local `{dev,test,prod}-secrets.tfvars` files.
