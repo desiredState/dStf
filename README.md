@@ -96,3 +96,7 @@ For example, to run a `terraform plan` against the `dev` workspace you can simpl
 ```sh
 dstf plan dev
 ```
+
+## To do
+
+* dStf Vault integration
